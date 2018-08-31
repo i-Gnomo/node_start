@@ -1,0 +1,16 @@
+{
+  "name": "myvoidmodule",
+  "version": "1.0.0",
+  "description": "a module demo for learning perpose",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "demo",
+    "deploy",
+    "modules"
+  ],
+  "author": "zsx",
+  "license": "ISC"
+}

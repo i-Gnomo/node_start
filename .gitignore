@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+node_modules/
+bak/
+
+*.txt
+*.bak
+*.tem
+*.temp
