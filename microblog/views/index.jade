@@ -3,17 +3,21 @@ extends layout
 block content
   h1= title
   p#homepage.box Welcome to #{title}
-  div 
-    a(href="http://jade-lang.com/api",target="_blank") jade api
-    | &nbsp;if you think you can, you can.
-  br
-  div='if you think you can,<b>you can</b>.'
-  div!='if you think you can,<b>you can</b>.'
-  br
-  button(disabled=true) Click Me
-  button(disabled=false,style={'color':'red','margin-left':'10px'}) Click Me
-  br
-  img(src="http://www.expressjs.com.cn/images/strongloop-logo@2x.png",style={'margin':'20px'})
+  //-
+    div 
+      a(href="http://jade-lang.com/api",target="_blank") jade api
+      | &nbsp;if you think you can, you can.
+    br
+    div='if you think you can,<b>you can</b>.'
+    div!='if you think you can,<b>you can</b>.'
+    br
+    button(disabled=true) Click Me
+    button(disabled=false,style={'color':'red','margin-left':'10px'}) Click Me
+    br
+    img(src="http://www.expressjs.com.cn/images/strongloop-logo@2x.png",style={'margin':'20px'})
+    br
+  div
+    a(href="/users",target="_blank") 去用户页面
 
   
   script(type="text/javascript").

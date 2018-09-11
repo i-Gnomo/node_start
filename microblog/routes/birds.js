@@ -15,7 +15,7 @@ router.get('/about', function(req, res) {
 //加载一个中间件
 router.use(function timeLog(req, res, next) {
     console.log('\nTime:', Date.now());
-    next();
+    next(); //路由控制权转移的方法
 });
 
 //路由级中间件
