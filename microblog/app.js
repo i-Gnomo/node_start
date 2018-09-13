@@ -5,8 +5,12 @@ var cookieParser = require('cookie-parser'); //第三方中间件
 var logger = require('morgan');
 
 //加载路由模块
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexRouter = require('./routes/index'); //首页
+var usersRouter = require('./routes/user'); //用户
+var postRouter = require('./routes/post'); //发表信息
+var regRouter = require('./routes/register'); //注册
+var loginRouter = require('./routes/login'); //登录
+var quitRouter = require('./routes/quit'); //退出
 var birds = require('./routes/birds');
 
 //express实例
@@ -34,7 +38,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
+app.use('/post', postRouter);
+app.use('/register', regRouter);
+app.use('/login', loginRouter);
+app.use('/quit', quitRouter);
+
 app.use('/birds', birds);
 
 //应用级中间件
