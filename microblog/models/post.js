@@ -7,10 +7,6 @@ function Post(username, post, time) {
     this.time = time || new Date().getTime();
 }
 
-function time2date() {
-
-}
-
 function inserPost(post, db, callback) {
     var collection = db.collection('posts');
     collection.insertOne(post, { safe: true }, function(err, post) {
