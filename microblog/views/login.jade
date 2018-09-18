@@ -7,19 +7,25 @@ html
     style.
       html,body{height:100%};
   body.text-center.sign
-    form.form-signin
-      img.mb-4(width="72",height="72")
+    form.form-signin(method="post")
+      img.mb-4(width="72",height="72",src="/images/logo.svg")
       h1.h3.mb-3.font-weight-normal Please sign in
       label(for="inputEmail",class="sr-only") Email address
-      input.form-control(type="email",id="inputEmail",placeholder="Email address",required="",autofocus="")
+      input.form-control(type="email",name="username",id="inputEmail",placeholder="Email address",required="",autofocus="")
       label(for="inputPassword",class="sr-only") Password
-      input.form-control(type="password",id="inputPassword",placeholder="Password",required="")
+      input.form-control(type="password",name="password",id="inputPassword",placeholder="Password",required="")
       div.checkbox.mt-3.mb-3
         label
           input(type="checkbox",style={"vertical-align":"middle","margin":"-2px 5px 0 0"})
           span Remember me
       
       button.btn.btn-lg.btn-primary.btn-block(type="submit") Sign in
+
+      -
+      if locals.error&&locals.error!=''
+        div.mt-4.alert.alert-danger #{locals.error}
+      if locals.success&&locals.success!=''
+        div.mt-4.alert.alert-success #{locals.success}
     
       p.mt-5.mb-3.text-muted © Gnomo 2017-2018
 

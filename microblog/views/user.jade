@@ -1,10 +1,41 @@
 extends layout
 
 block content
-  h1= title
-  p#homepage.box hello #{title}
-  div
-    p 用户页面 #{data}
+  div(role="main")
+    //- 判断操作状态
+    -
+    if locals.error&&locals.error!=''
+      div.container
+        div.mt-4.alert.alert-danger #{locals.error}
+    if locals.success&&locals.success!=''
+      div.container
+        div.mt-4.alert.alert-success #{locals.success}
+
+    -
+    if session.user.name==title
+      div.jumbotron
+        div.container
+          h4.display-6.mb-3 Hello, #{session.user.name}.
+          form(method="post",action="/post")
+            div.input-group
+              textarea.form-control(name="post",id="postMessg",rows="2",required="")
+              button.btn.btn-primary(type="submit") 发言
+    else
+      div.jumbotron
+        div.container
+          h1.display-4.mb-4 欢迎来到#{title}的主页!
+
+    div.container
+      div.row
+        -
+        each item, index in data
+          div.col-md-4.mb-4
+            h3 #{item.user} 说
+            h6 #{item.time}
+            p #{item.post}
+            p
+             a.btn.btn-secondary(href='/user/#{item.user}',role="button") 去围观 »
+      hr
 
   
   script(type="text/javascript").

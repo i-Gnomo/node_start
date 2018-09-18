@@ -1,7 +1,24 @@
 extends layout
 
 block content
-  h1= title
-
-  div
-    p register
+  div(role="main")
+    div.container
+      -
+      if locals.error&&locals.error!=''
+        div.mt-4.alert.alert-danger #{locals.error}
+      if locals.success&&locals.success!=''
+        div.mt-4.alert.alert-success #{locals.success}
+      
+      h1.h3.mt-4.mb-4.font-weight-normal Please register
+      form(method="post",style={"width":"500px"})
+        label(for="inputEmail",class="sr-only") Email address
+        input.form-control(type="email",name="username",id="inputEmail",placeholder="Email address",required="",autofocus="")
+        br
+        label(for="inputPassword",class="sr-only") Password
+        input.form-control(type="password",name="password",id="inputPassword",placeholder="Password",required="")
+        br
+        label(for="inputPassword",class="sr-only") Password-repeat
+        input.form-control(type="password",name="password-repeat",id="inputPassword2",placeholder="Password-repeat",required="")
+        br
+        button.btn.btn-lg.btn-primary.btn-block(type="submit") Register
+        br
