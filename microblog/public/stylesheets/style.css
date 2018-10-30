@@ -14,3 +14,7 @@ body.sign {
   padding: 15px;
   margin: auto;
 }
+
+.form-control {
+  margin-bottom: 10px;
+}

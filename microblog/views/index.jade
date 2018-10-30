@@ -68,5 +68,9 @@ block content
     window.onload = function(){
       console.log('hello jade');
     };
+    for (var i = 0; i < 10; ++i) {
+      function abc(i){console.log(i)};
+      setTimeout(abc(i), 0);
+    }
     
 

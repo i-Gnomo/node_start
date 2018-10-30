@@ -12,7 +12,7 @@ block content
         div.mt-4.alert.alert-success #{locals.success}
 
     -
-    if session.user.name==title
+    if session.user && session.user.name==title
       div.jumbotron
         div.container
           h4.display-6.mb-3 Hello, #{session.user.name}.
