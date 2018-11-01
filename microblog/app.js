@@ -120,7 +120,6 @@ app.use(function(err, req, res, next) {
 //极验验证 拼图验证码
 var slide = require('./routes/slide');
 app.get("/gt/register-slide", function(req, res) {
-
     // 向极验申请每次验证所需的challenge
     slide.register(null, function(err, data) {
         if (err) {
@@ -151,7 +150,6 @@ app.get("/gt/register-slide", function(req, res) {
     });
 });
 app.post("/gt/validate-slide", function(req, res) {
-
     // 对ajax提供的验证凭证进行二次验证
     slide.validate(req.session.fallback, {
         geetest_challenge: req.body.geetest_challenge,
@@ -167,17 +165,15 @@ app.post("/gt/validate-slide", function(req, res) {
             });
 
         } else if (!success) {
-
             // 二次验证失败
             res.send({
                 status: "fail",
-                info: '登录失败'
+                info: '验证失败'
             });
         } else {
-
             res.send({
                 status: "success",
-                info: '登录成功'
+                info: '验证成功'
             });
         }
     });

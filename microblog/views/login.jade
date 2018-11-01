@@ -7,7 +7,7 @@ html
     style.
       html,body{height:100%};
   body.text-center.sign
-    form.form-signin(method="post")
+    form.form-signin(onsubmit="return false;")
       img.mb-4(width="72",height="72",src="/images/logo.svg")
       h1.h3.mb-3.font-weight-normal Please sign in
       label(for="inputEmail",class="sr-only") Email address
@@ -16,11 +16,12 @@ html
       input.form-control(type="password",name="password",id="inputPassword",placeholder="Password",required="")
       div(id="captcha")
         p(id="wait",class="show") 正在加载验证码......
+      p.mt-1.mb-1(class="logintips",style="color:#f66495;font-size:12px;text-align:left;display:none;")
       div.checkbox.mt-3.mb-3
         label
-          input(type="checkbox",style={"vertical-align":"middle","margin":"-2px 5px 0 0"})
+          input(type="checkbox",checked,style={"vertical-align":"middle","margin":"-2px 5px 0 0"})
           span Remember me
-      
+
       button.btn.btn-lg.btn-primary.btn-block(type="submit") Sign in
 
       -
@@ -32,40 +33,57 @@ html
       p.mt-5.mb-3.text-muted © Gnomo 2017-2018
 
     script(type='text/javascript', src='/javascripts/jquery.js')
-    script(type='text/javascript', src='/javascripts/bootstrap.js')
+    //- script(type='text/javascript', src='/javascripts/bootstrap.js')
+    script(type='text/javascript', src='/javascripts/md5.js')
+    script(type='text/javascript', src='/javascripts/base64.js')
     script(type='text/javascript', src='/javascripts/gt.js')
     script(type='text/javascript').
-      $(function(){
-        console.log('login');
-      });
       var handler = function (captchaObj) {
-          // console.log(captchaObj,'captchaObj');
           captchaObj.appendTo('#captcha');
           captchaObj.onReady(function () {
               $("#wait").hide();
           });
-          $('#btn').click(function () {
+          $('form.form-signin').on('submit',function () {
               var result = captchaObj.getValidate();
-              // console.log(result);
               if (!result) {
-                  return alert('请完成验证');
+                  $('.logintips').html('请先完成验证').show();
+                  return false;
               }
               $.ajax({
                   url: 'gt/validate-slide',
                   type: 'POST',
                   dataType: 'json',
                   data: {
-                      username: $('#username2').val(),
-                      password: $('#password2').val(),
                       geetest_challenge: result.geetest_challenge,
                       geetest_validate: result.geetest_validate,
                       geetest_seccode: result.geetest_seccode
                   },
                   success: function (data) {
                       if (data.status === 'success') {
-                          alert('登录成功');
+                        //-   alert('验证成功');
+                        var pswstr = $('#inputPassword').val();
+                        //- md5加密
+                        var psw_md5 = CryptoJS.algo.MD5.create();
+                        psw_md5.update(pswstr);
+                        var md5Str = CryptoJS.enc.Base64.stringify(psw_md5.finalize());
+                        $.ajax({
+                            url: '/login',
+                            type: 'POST',
+                            data: {
+                                username: $('#inputEmail').val(),
+                                password: md5Str
+                            },
+                            success: function (data){
+                                if(data.status == 'success'){
+                                    window.location.href = "/";
+                                }else{
+                                    $('.logintips').html(data.info).show();
+                                }
+                                //- console.log('data',data.status,data.info);
+                            }
+                        })
                       } else if (data.status === 'fail') {
-                          alert('登录失败，请完成验证');
+                          $('.logintips').html('登录失败，请完成验证').show();
                           captchaObj.reset();
                       }
                   }

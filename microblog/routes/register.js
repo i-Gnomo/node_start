@@ -48,7 +48,7 @@ router.post('/', function(req, res, next) {
             }
             req.session.user = newUser;
             req.flash('success', '注册成功');
-            res.redirect('/');
+            return res.redirect('/');
         });
     });
     // res.render('register', { title: 'register' });
