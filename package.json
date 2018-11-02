@@ -1,0 +1,33 @@
+{
+    "name": "node_start",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "dependencies": {
+        "babel-core": "^6.26.3",
+        "babel-polyfill": "^6.26.0",
+        "gt3-sdk": "^2.0.0"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-preset-latest": "^6.24.1",
+        "babel-preset-react": "^6.24.1",
+        "babel-preset-stage-2": "^6.24.1",
+        "babel-register": "^6.26.0"
+    },
+    "scripts": {
+        "build": "babel src -d lib",
+        "buildes6": "babel es6.js -o es6babel.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/i-Gnomo/node_start.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/i-Gnomo/node_start/issues"
+    },
+    "homepage": "https://github.com/i-Gnomo/node_start#readme"
+}
