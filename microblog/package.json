@@ -18,6 +18,7 @@
         "jade": "~1.11.0",
         "mongodb": "*",
         "morgan": "~1.9.0",
+        "nodemailer": "^4.6.8",
         "serve-favicon": "^2.5.0"
     }
 }

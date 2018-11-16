@@ -6,9 +6,9 @@ module.exports = {
     url: 'mongodb://localhost:27017/microblog'
 }
 
-//登录注册图形验证码
-
+//登录注册图形验证码 (使用geetest 极验nodejs api)
 //邮箱认证功能 支持OAuth
+//保证注册账号的有效性
 
 //对发帖进行限制
 

@@ -74,7 +74,7 @@ console.log(foo); //{ prop: 123, prop2: '999' }
 
 //es6声明变量的6中方法 var function let const import class
 
-//解构赋值
+//解构赋值 按照一定模式，从数组和对象中提取值，对变量进行赋值
 var url = 'https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment';
 var parsedURL = /^(\w+)\:\/\/([^\/]+)\/(.*)$/.exec(url);
 console.log(parsedURL);
@@ -128,3 +128,23 @@ for (var { name: _n, family: { father: _p } }
     of people) {
     console.log('Name:' + _n, 'Father:' + _p);
 }
+
+
+let [a1, b1, c1] = [1, [2, 3], 4];
+console.log(a1, b1, c1); //1 [2,3] 4
+//不完全解构
+let [a2, [b2], c2] = [1, [2, 3], 4];
+console.log(a2, b2, c2); //1 2 4
+
+//默认值 只有当成员值 === undefined时默认值才会生效
+let [x1, y1 = 'foooooo'] = ['foo'];
+console.log(y1); //'foooooo'
+let [x2, y2 = 'foooooo222'] = ['foo', undefined];
+console.log(y2); //'foooooo222'
+let [x3, y3 = 'foooooo333'] = ['foo', null];
+console.log(y3); //null
+
+
+// Set 结构
+// Iterator 接口
+// Generator 函数

@@ -41,6 +41,7 @@ var regRouter = require('./routes/register'); //注册
 var loginRouter = require('./routes/login'); //登录
 var quitRouter = require('./routes/quit'); //退出
 var birds = require('./routes/birds');
+var sendemail = require('./routes/sendemail'); //发送认证邮件test
 
 //express实例
 var app = express();
@@ -98,6 +99,9 @@ app.use('/login', loginRouter);
 app.use('/quit', quitRouter);
 
 app.use('/birds', birds);
+
+//发送认证邮件test
+app.use('/sendemail', sendemail);
 
 //应用级中间件
 //没有挂载路径
