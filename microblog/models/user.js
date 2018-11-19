@@ -4,6 +4,9 @@ var MongoClient = require('mongodb').MongoClient;
 function User(user) {
     this.name = user.name;
     this.password = user.password;
+    this.usercode = user.usercode;
+    this.datetime = user.datetime;
+    this.islive = user.islive;
 };
 
 const insertUser = function(user, db, callback) {
@@ -15,17 +18,38 @@ const insertUser = function(user, db, callback) {
     });
 }
 
+const updateUser = function(user, db, callback) {
+    const collection = db.collection('users');
+    console.log();
+    collection.updateOne({ name: user.name }, { $set: { password: user.password, usercode: user.usercode, datetime: user.datetime, islive: user.islive, } }, function(err, result) {
+        callback();
+    });
+}
+
 User.prototype.save = function save(callback) {
     var user = {
         name: this.name,
         password: this.password,
+        usercode: this.usercode,
+        datetime: this.datetime,
+        islive: this.islive
     };
     MongoClient.connect(dbSet.url, { useNewUrlParser: true }, function(err, client) {
         if (err) throw err;
         const db = client.db(dbSet.db);
-        insertUser(user, db, function(result) {
-            callback(result);
-            client.close();
+        findUser(user.name, db, function(err, result) {
+            console.log(err, result, '-------------------------result');
+            if (result.length > 0) {
+                updateUser(user, db, function(result1) {
+                    callback(result1);
+                    client.close();
+                });
+            } else {
+                insertUser(user, db, function(result2) {
+                    callback(result2);
+                    client.close();
+                });
+            }
         });
     });
 }

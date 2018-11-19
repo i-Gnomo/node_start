@@ -25,24 +25,26 @@ router.post('/', function(req, res, next) {
     var password = req.body.password;
     User.get(req.body.username, function(err, user) {
         if (!user) {
-            // req.flash('error', '该账户不存在');
             res.send({
                 status: "error",
                 info: '该账户不存在'
             });
             return;
-            // return res.redirect('/login');
+        }
+        if (!user.islive) {
+            res.send({
+                status: "error",
+                info: '账号未激活，请查看激活邮件！'
+            });
+            return;
         }
         if (user.password != password) {
-            // req.flash('error', '密码输入错误');
             res.send({
                 status: "error",
                 info: '密码输入错误'
             });
             return;
-            // return res.redirect('/login');
         }
-
         req.session.user = user;
         req.flash('success', '登录成功');
         res.send({
@@ -50,7 +52,6 @@ router.post('/', function(req, res, next) {
             info: '登录成功'
         });
         return;
-        // return res.redirect('/');
     });
 
 });
