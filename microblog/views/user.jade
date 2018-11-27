@@ -36,8 +36,12 @@ block content
             p
              a.btn.btn-secondary(href='/user/#{item.user}',role="button") 去围观 »
       hr
+    
+    block userbar
+      div(role="userbar")
+        p 
+          a(href='',role="tocenter") 个人中心
 
-  
   script(type="text/javascript").
     window.onload = function(){
       console.log('hello my user');

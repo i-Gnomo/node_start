@@ -1,36 +1,51 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
+  include header
   body
-    div.navbar.navbar-expand-lg.navbar-dark.bg-dark
-      div.container
-        a.navbar-brand(href="/") Microblog
-        div.collapse.navbar-collapse
-          ul.navbar-nav.mr-auto
-            li.nav-item.active
-              a.nav-link(href="/") 首页
-            -
-            if session.user
-              li.nav-item
-                a.nav-link(href="/quit") 退出登录
-            else
-              li.nav-item
-                a.nav-link(href="/login") 登录
-              li.nav-item
-                a.nav-link(href="/register") 注册
+    block header
+      div.navbar.navbar-expand-lg.navbar-dark.bg-dark
+        div.container
+          a.navbar-brand(href="/") Microblog
+          div.collapse.navbar-collapse
+            ul.navbar-nav.mr-auto
+              li.nav-item.active
+                a.nav-link(href="/") 首页
+              -
+              if session.user
+                li.nav-item
+                  a.nav-link(href="/quit") 退出登录
+              else
+                li.nav-item
+                  a.nav-link(href="/login") 登录
+                li.nav-item
+                  a.nav-link(href="/register") 注册
+                li.nav-item
+                  a(id="wb_connect_btn")
 
-          form.form-inline.my-2.my-md-0
-            input.form-control.mr-sm-2.my-sm-0(type="text",placeholder="Search",aria-label="Search")
-            button.btn.btn-outline-success.my-2.my-sm-0(type="submit") Search
+            form.form-inline.my-2.my-md-0
+              input.form-control.mr-sm-2.my-sm-0(type="text",placeholder="Search",aria-label="Search")
+              button.btn.btn-outline-success.my-2.my-sm-0(type="submit") Search
 
     block content
 
-    footer.container
-      p © Gnomo 2017-2018
+    block footer
+      footer.container
+        p © Gnomo 2017-2018
 
     script(type='text/javascript', src='/javascripts/jquery.js')
     script(type='text/javascript', src='/javascripts/bootstrap.js')
+    script(type='text/javascript').
+      WB2.anyWhere(function(W){
+          W.widget.connectButton({
+              id: "wb_connect_btn",	
+              type:"3,2",
+              callback : {
+                  login:function(o){	//登录后的回调函数
+                  },	
+                  logout:function(){	//退出后的回调函数
+                  }
+              }
+          });
+      });
+
 

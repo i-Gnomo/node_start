@@ -1,4 +1,5 @@
 var Geetest = require('../gt-sdk');
+//极验验证id key
 
 var captcha = new Geetest({
     geetest_id: 'e6721cd02ebe3ee262c9b84337367787',
