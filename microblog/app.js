@@ -2,7 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser'); //第三方中间件
-var logger = require('morgan');
+var logger = require('morgan'); //关于http请求的日志 中间件
 
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);

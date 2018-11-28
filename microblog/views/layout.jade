@@ -20,7 +20,7 @@ html
                 li.nav-item
                   a.nav-link(href="/register") 注册
                 li.nav-item
-                  a(id="wb_connect_btn")
+                  //- a(id="wb_connect_btn")
 
             form.form-inline.my-2.my-md-0
               input.form-control.mr-sm-2.my-sm-0(type="text",placeholder="Search",aria-label="Search")
@@ -35,7 +35,8 @@ html
     script(type='text/javascript', src='/javascripts/jquery.js')
     script(type='text/javascript', src='/javascripts/bootstrap.js')
     script(type='text/javascript').
-      WB2.anyWhere(function(W){
+      // weibo JS SDK for OAuth2.0
+      /*WB2.anyWhere(function(W){
           W.widget.connectButton({
               id: "wb_connect_btn",	
               type:"3,2",
@@ -46,6 +47,6 @@ html
                   }
               }
           });
-      });
+      });*/
 
 

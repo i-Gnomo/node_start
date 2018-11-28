@@ -6,6 +6,9 @@ module.exports = {
     url: 'mongodb://localhost:27017/microblog'
 }
 
+//mongoDB非关系型数据库操作
+//jade模板的使用
+
 //登录注册图形验证码 (使用geetest 极验nodejs api)
 //邮箱认证功能
 //保证注册账号的有效性
@@ -22,8 +25,10 @@ module.exports = {
 
 //查询数据库限制 访问频繁的页面缓存
 
-//日志
+//日志 将日志写入日志文件 根据日期 一天一个日志文件
 
 //多线程提高吞吐量
 
 //反向代理 实现基于域名的端口共享
+
+//发布
